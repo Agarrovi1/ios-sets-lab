@@ -13,6 +13,17 @@ Input: heights of trees below:
 Output:
 `169.375`
 
+```swift
+var treeHeights = [161, 182, 161, 154, 176, 170, 167, 171, 170, 174]
+
+var sum = 0
+for a in treeHeights {
+sum += a
+}
+
+var average = sum / treeHeights.count
+```
+
 
 ## Question 2
 
@@ -21,6 +32,32 @@ Determine if a String is a pangram. A pangram is a string that contains every le
  e.g `"The quick brown fox jumps over the lazy dog"` is a pangram
  e.g `"The quick brown fox jumped over the lazy dog"` is NOT a pangram
 
+```swift
+var alphabet = "abcdefghijklmnopqrstuvwxyz"
+var alphabetArray = String()
+
+for a in alphabet {
+alphabetArray.append(a)
+}
+
+var alphaSet = Set(alphabetArray)
+
+var sentence = "The quick brown fox jumps over the lazy dog"
+
+var sentenceSet: Set<Character> = []
+
+for a in sentence {
+if a != " " {
+sentenceSet.insert(a)
+}
+}
+
+if alphaSet.isSubset(of: sentenceSet) {
+print("This is a pangram")
+} else {
+print("This is not a pangram")
+}
+```
 
 ## Question 3
 
@@ -39,6 +76,31 @@ You are given an array `nums` representing the data status of the set S after th
  Example 3:
  Input: `nums = [2,2]`
  Output: `[2,1]`
+ 
+ ```swift
+ var nums = [1,2,2,4]
+ var numSet = Set(nums)
+ var missingNo: [Int] = []
+ 
+ for a in numSet {
+ var count = 0
+ for b in nums {
+ if a == b {
+ count += 1
+ }
+ }
+ if count > 1 {
+ missingNo.append(a)
+ }
+ }
+ 
+ for a in 1...nums.count {
+ if !numSet.contains(a) {
+ missingNo.append(a)
+ }
+ }
+ print(missingNo)
+ ```
 
 
 ## Question 4
@@ -50,6 +112,20 @@ let arr1 = [2, 4, 5, 6, 8, 10, 12]
 let arr2 = [1, 2, 3, 4, 5, 6]
 let arr3 = [5, 6, 7, 8, 9, 10, 11, 12]
 let arr4 = [1, 3, 4, 5, 6, 7, 9]
+
+var allArr = [arr1,arr2,arr3,arr4]
+
+var answerArray: [Int] = []
+
+for a in allArr {
+for b in a {
+if !answerArray.contains(b) {
+answerArray.append(b)
+}
+}
+}
+print(answerArray.sorted())
+
 ```
 
 
@@ -65,6 +141,18 @@ Perform the following set operations on the lists below:
 ```swift
 let list1: Set = [1, 3, 4, 6, 2, 7, 9]
 let list2: Set = [3, 7, 13, 10, 4]
+
+//1.
+print(list1.intersection(list2)) //[7,4,3]
+
+//2.
+print(list1.symmetricDifference(list2)) //[6,10,9,1,2,13]
+
+//3.
+print(list1.union(list2)) //[1,7,6,10,3,4,2,9,13]
+
+//4.
+print(list1.subtracting(list2)) //[9,6,1,2]
 ```
 
 
@@ -83,13 +171,11 @@ spaceships.insert("Serenity")
 print(spaceships.count)
 ```
 
-- 3
-- 4
-- Nothing will be output
-- 0
 - This code will not compile
-- 1
-- This code will compile but crash
+```swift
+3 if var spaceships: Set<String> = []
+```
+
 
 
 ## Question 7
@@ -112,8 +198,9 @@ if spaceships1.isSubset(of: spaceships2) {
 }
 ```
 
-- This code will compile but crash
-- "This is not a subset"
+
 - This code will not compile
-- "This is a subset"
-- Nothing will be output
+
+```swift
+//"This is a subset" if var spaceship1: Set<String> = []
+```
